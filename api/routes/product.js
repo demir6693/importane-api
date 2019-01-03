@@ -3,10 +3,10 @@ const mysql = require('mysql');
 const router = express.Router();
 
 const db = mysql.createConnection({
-    host: '*',
-    user: '*',
-    password: '*',
-    database: '*'
+    host: '5.79.70.193',
+    user: 'root',
+    password: 'IDMrcxUOSoup',
+    database: 'importane'
 });
 
 db.connect((err => {
@@ -34,7 +34,6 @@ router.get('/getprod/:chprodId', (req, res, next) => {
             });
 });
 
-
 router.get('/getchgropu/:name', (req, res, next) => {
     
     const name_chg = req.params.name;
@@ -44,6 +43,15 @@ router.get('/getchgropu/:name', (req, res, next) => {
             if(err) throw err;
             res.json(result);
             });
+});
+
+router.get('/getsertifikat', (req, res, next) => {
+
+    let sql = "SELECT * FROM sertifikati;";
+    let query = db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json(result);
+    });
 });
 
 module.exports = router;
