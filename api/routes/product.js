@@ -3,10 +3,10 @@ const mysql = require('mysql');
 const router = express.Router();
 
 const db = mysql.createConnection({
-    host: '*',
-    user: '*',
-    password: '*',
-    database: '*'
+    host: '5.79.70.193',
+    user: 'root',
+    password: 'IDMrcxUOSoup',
+    database: 'importane'
 });
 
 db.connect((err => {
@@ -54,4 +54,12 @@ router.get('/getsertifikat', (req, res, next) => {
     });
 });
 
+router.get('/getsertifikaten', (req, res, next) => {
+
+    let sql = "SELECT * FROM sertifikatiEn;";
+    let query = db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json(result);
+    });
+});
 module.exports = router;
